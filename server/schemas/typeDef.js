@@ -11,3 +11,5 @@ type Query {
   users: [User]
 }
 `
+
+module.exports = typeDefs

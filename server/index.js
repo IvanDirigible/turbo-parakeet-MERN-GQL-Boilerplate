@@ -5,7 +5,8 @@ const db = require("./config/connection");
 const {ApolloServer} = require("@apollo/server");
 const {expressMiddleware} = require("@apollo/server/express4");
 const { resolvers, typeDefs } =  require("./schemas")
-
+const authMiddleware = require("./utils/auth");
+require("dotenv").config()
 
 const server = new ApolloServer({
   typeDefs,
@@ -21,7 +22,9 @@ const startApolloServer = async ()=>{
   app.use(express.json());
   app.use(express.urlencoded({extended: true}));
 
-  app.use("graphql", expressMiddleware(server))
+  app.use("graphql", expressMiddleware(server, {
+    context: authMiddleware
+  }))
 
 
 if (process.env.NODE_ENV === "production"){
@@ -38,6 +41,7 @@ app.get("*", (req,res)=>{
 db.once("open", ()=>{
   app.listen(PORT, ()=>{
     console.log(`App is listening on ${PORT}, URL ${"http://localhost:3001"}`);
+    console.log("GQL http://localhost:3001/graphql")
   })
 });
 }
