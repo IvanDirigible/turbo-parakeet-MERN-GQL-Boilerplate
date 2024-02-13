@@ -1,0 +1,24 @@
+{
+  "name": "mernserver",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "debug": {
+    "scripts": {
+      "test": "echo \"Error: no test specified\" && exit 1"
+    }
+  },
+  "keywords": [
+    "MERN",
+    "GQL"
+  ],
+  "author": "me",
+  "license": "MIT",
+  "dependencies": {
+    "@apollo/server": "^4.10.0",
+    "bcrypt": "^5.1.1",
+    "express": "^4.18.2",
+    "graphql": "^16.8.1",
+    "mongoose": "^8.1.2"
+  }
+}
